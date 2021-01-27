@@ -7,8 +7,6 @@ const express = require('express'),
 const app = express();
 const PORT = 8008
 
-const create = require('./exampleKnex')
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -18,8 +16,5 @@ app.use('/currencies', currencies)
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 })
-
-create.then(console.log("Success"))
-    .catch(err => console.log(err))
 
 module.exports = app;

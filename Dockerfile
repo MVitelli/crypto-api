@@ -1,9 +1,10 @@
 FROM keymetrics/pm2:latest-alpine
 
 # Bundle APP files
-COPY backend src/
+COPY backend backend/
 COPY package.json .
-COPY ecosystem.config.js .
+COPY mysql mysql/
+COPY pm2.json .
 
 # Install app dependencies
 ENV NPM_CONFIG_LOGLEVEL warn

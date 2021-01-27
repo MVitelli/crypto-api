@@ -6,4 +6,6 @@ const create = db.schema.createTable('user', (table) => {
     table.integer('age')
 })
 
-module.exports = create;
+create.then(res => console.log('success', res))
+
+module.export = create
