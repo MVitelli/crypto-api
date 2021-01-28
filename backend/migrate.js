@@ -1,26 +1,30 @@
 require('dotenv').config()
 
 const fs = require('fs')
+const path = require('path')
 const mysql = require('mysql')
+const dbConfig = require('./config/db.config')
 
-const con = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-})
+const con = mysql.createConnection(dbConfig)
 
 con.connect((err) => {
     if (err) {
         console.log(err)
         process.exit()
     }
-    const queryString = fs.readFileSync(__dirname + '/../mysql/currency.sql', 'utf8')
-    con.query(queryString, (err, res) => {
+    const directoryPath = path.join(__dirname, '../mysql/');
+    fs.readdir(directoryPath, function (err, files) {
         if (err) {
-            console.log(err)
-            process.exit()
+            return console.log('Unable to scan directory: ' + err);
         }
-        console.log('result', res)
-    })
+        files.forEach(function (file) {
+            let queryString = fs.readFileSync(directoryPath + file, 'utf8')
+            con.query(queryString, (err, res) => {
+                if (err) {
+                    console.log(err)
+                    process.exit()
+                }
+            })
+        });
+    });
 })

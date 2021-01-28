@@ -1,13 +1,27 @@
 var express = require('express');
+const rate = require('../models/rate');
 
 var router = express.Router();
 
-router.get('/', function(req, res) {
-    res.send('GET handler for /rates route.');
-});
+router
+    .get('/', function (req, res) {
+        rate.getAll()
+            .then(data => {
+                res.send(data)
+            })
+            .catch(err => {
+                res.send(err)
+            });
+    })
+    .post('/', function (req, res) {
+        rate.insert(req.body)
+            .then((id) => {
+                res.send({ "idInserted": id })
+            })
+            .catch(err => {
+                res.send(err)
+            });
 
-router.post('/', function(req, res) {
-    res.send('POST handler for /rates route.');
-});
+    });
 
 module.exports = router;
