@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./backend/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "node ./backend/migrate.js"
+    "migrate": "node ./backend/migrate.js",
+    "cleanDB": "node ./backend/cleanMigration.js"
   },
   "author": "mvitelli",
   "license": "ISC",

@@ -1,0 +1,4 @@
+
+DROP TABLE IF EXISTS rates;
+
+DROP TABLE IF EXISTS currencies;

@@ -4,22 +4,34 @@ const rate = require('../models/rate');
 var router = express.Router();
 
 router
-    .get('/', function (req, res) {
-        rate.getAll()
+    .get('/:symbol', (req, res, next) => {
+        let symbol = req.params.symbol
+        rate.getBySymbol(symbol)
             .then(data => {
+                if (!data) res.send([])
                 res.send(data)
             })
             .catch(err => {
-                res.send(err)
+                next(err)
             });
     })
-    .post('/', function (req, res) {
+    .get('/', (req, res, next) => {
+        rate.getJoined()
+            .then(data => {
+                if (!data) res.send([])
+                res.send(data)
+            })
+            .catch(err => {
+                next(err)
+            });
+    })
+    .post('/', (req, res) => {
         rate.insert(req.body)
             .then((id) => {
                 res.send({ "idInserted": id })
             })
             .catch(err => {
-                res.send(err)
+                next(err)
             });
 
     });

@@ -5,10 +5,14 @@ const express = require('express'),
     rates = require('./routes/rates');
 
 const app = express();
-const PORT = 8008
+const PORT = process.env.PORT
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use((error, req, res, next) => {
+    return res.status(500).json({ error: error.toString() });
+  });
 
 app.use('/rates', rates)
 app.use('/currencies', currencies)
