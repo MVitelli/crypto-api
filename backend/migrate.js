@@ -15,11 +15,11 @@ con.connect((err) => {
 })
 
 const directoryPath = path.join(__dirname, '../mysql/');
-fs.readdir(directoryPath, function (err, files) {
+fs.readdir(directoryPath, async (err, files) => {
     if (err) {
         return console.log('Unable to scan directory: ' + err);
     }
-    files.forEach(function (file) {
+    await files.forEach((file) => {
         if (file != "cleanDB.sql") {
             let queryString = fs.readFileSync(directoryPath + file, 'utf8')
             con.query(queryString, (err, res) => {
@@ -30,6 +30,6 @@ fs.readdir(directoryPath, function (err, files) {
             })
         }
     });
-    console.log("Migration succesfull!")
-    con.end();
+    console.log("Succesfull migration")
+    con.end()
 });

@@ -19,6 +19,8 @@ con.query(queryString, (err, res) => {
         console.log(err)
         process.exit()
     }
-    console.log('All the tables were deleted')
-    con.end();
+    if (res) {
+        console.log('All the tables were deleted')
+        con.end();
+    }
 })

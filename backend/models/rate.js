@@ -9,7 +9,6 @@ class Rate extends Model {
     async getJoined() {
         let currencies = await this.knex('currencies');
         let rates = await this.knex('rates').orderBy('created_at', 'desc');
-        console.log(rates)
         let joinedQuery = currencies
             .map((cur) => {
                 let foundRate = rates.find((rate) => cur.id === rate.id_currency)
@@ -27,6 +26,7 @@ class Rate extends Model {
             .where('symbol', symbolToFind)
             .orderBy('created_at', 'desc')
             .first()
+            .select('rates.*','currencies.description', 'currencies.symbol')
         let {description, symbol, ...rest} = query
         return {
             ...rest,
