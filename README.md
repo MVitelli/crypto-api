@@ -34,6 +34,15 @@
 
       CMD [ "pm2-runtime", "start", "pm2.json" ]
       
+## Aclaraciones importantes
+
+- Se consideró que las currencies eran fijas y se las insertó previamente en la base, al hacer la migración.
+
+- Se subió un .env.example porque no es buena práctica subir el .env (.gitignore), se debe reemplazar el nombre por .env para ejecutar la app.
+
+- Se agregó un colección de postman en formato .json con ejemplos de pedidos a los servicios.
+      
+      
 ## NPM Scripts
 
 En el package.json están los siguientes scripts:
@@ -50,8 +59,3 @@ Todos estos scripts tienen su version local que toma el DB_HOST=localhost para m
 
 ```npm run start:local ```
 
-## Aclaraciones
-
-- Se consideró que las currencies eran fijas y se las insertó previamente en la base, al hacer la migración.
-
-- Se subió un .env.example porque no es buena práctica subir el .env (.gitignore), se debe reemplazar el nombre por .env para ejecutar la app.
