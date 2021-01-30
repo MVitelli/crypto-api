@@ -6,10 +6,12 @@
   "scripts": {
     "start": "node ./backend/app.js",
     "start:local": "DB_HOST=localhost node ./backend/app.js",
-    "test:local": "DB_HOST=localhost mocha ./backend/test",
     "test": "mocha ./backend/test",
+    "test:local": "DB_HOST=localhost mocha ./backend/test",
     "migrate": "node ./backend/migrate.js",
-    "cleanDB": "node ./backend/cleanMigration.js"
+    "migrate:local": "DB_HOST=localhost node ./backend/migrate.js",
+    "cleanDB": "node ./backend/cleanMigration.js",
+    "cleanDB:local": "DB_HOST=localhost node ./backend/cleanMigration.js"
   },
   "author": "mvitelli",
   "license": "ISC",

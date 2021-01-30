@@ -23,7 +23,7 @@ describe("Currency model", () => {
         await knex.raw(`delete from rates`)
         await knex.raw(`delete from currencies`)
     })
-    it.skip("should get any currency", (done) => {
+    it("should get any currency", (done) => {
         currency.getAll()
             .then((data) => {
                 data.length.should.be.not.equal(0)
@@ -33,7 +33,7 @@ describe("Currency model", () => {
                 done(err)
             })
     })
-    it.skip("should get all the currencies", (done) => {
+    it("should get all the currencies", (done) => {
         currency.getAll()
             .then((data) => {
                 data.length.should.be.equal(3)

@@ -18,24 +18,28 @@ const insertQuery = () => {
 
 
 describe("Rate model", () => {
+    before(async () => {
+        await knex.raw(`delete from rates`)
+        await knex.raw(`delete from currencies`)
+        await knex.raw(`alter table rates AUTO_INCREMENT=1`)
+    })
     beforeEach(async () => {
-        // await knex.raw(`
-        // INSERT INTO currencies(id, description, symbol)
-        // VALUES
-        // (1, 'bitcoin', 'BTC'),
-        // (2, 'etherum', 'ETH'),
-        // (3, 'cardano', 'ADA');`
-        // )
-        // await insertQuery()
+        await knex.raw(`
+        INSERT INTO currencies(id, description, symbol)
+        VALUES (1, 'bitcoin', 'BTC'), (2, 'etherum', 'ETH'), (3, 'cardano', 'ADA');`
+        )
+        await insertQuery()
     })
     afterEach(async () => {
-        // await knex.raw(`delete from rates`)
-        // await knex.raw(`delete from currencies`)
+        await knex.raw(`delete from rates`)
+        await knex.raw(`delete from currencies`)
+        await knex.raw(`alter table rates AUTO_INCREMENT=1`)
     })
-    it.skip("should get BTC rate", () => {
+    it("should get BTC rate", (done) => {
         rate.getBySymbol('BTC')
             .then((data) => {
                 data.currency.symbol.should.be.equal('BTC')
+                done()
             })
             .catch((err) => {
                 done(err)
@@ -45,7 +49,6 @@ describe("Rate model", () => {
         insertQuery().then(
             rate.getBySymbol('BTC')
                 .then((data) => {
-                    console.log(data)
                     data.id.should.be.equal(4)
                     done()
                 })
@@ -53,5 +56,26 @@ describe("Rate model", () => {
                     done(err)
                 })
         )
+    })
+    it("should get last rate of each currency", (done) => {
+        setTimeout(() => {
+            insertQuery().then(() => {
+                rate.getJoined()
+                    .then(data => {
+                        
+                        let btcRate = data.find(rate => rate.currency.symbol === 'BTC')
+                        let ethRate = data.find(rate => rate.currency.symbol === 'ETH')
+                        let adaRate = data.find(rate => rate.currency.symbol === 'ADA')
+
+                        btcRate.id.should.be.equal(4)
+                        ethRate.id.should.be.equal(5)
+                        adaRate.id.should.be.equal(6)
+                        done()
+                    })
+                    .catch((err) => {
+                        done(err)
+                    })
+            })
+        }, 500)
     })
 })
