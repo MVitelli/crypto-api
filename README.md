@@ -49,7 +49,7 @@ En el package.json están los siguientes scripts:
 
 - start: levanta la app
 
-- test: corre los tests de la carpeta "./backend/tests"
+- test: corre los tests de la carpeta "./backend/tests". Para utilizarlo, hay que ejecutar ```npm install mocha -g``` en la consola correspondiente (host o container)
 
 - migrate: corre una migracion inicial con todos los archivos que se encuentran en "./backend/mysql"
 
