@@ -11,10 +11,15 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: crypto123
-      MYSQL_ROOT_HOST: '%'
       MYSQL_DATABASE: crypto
       MYSQL_USER: maxi
       MYSQL_PASSWORD: crypto123
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d
+    networks:
+      default:
+        aliases: 
+          - crypto
 
   adminer:
     image: adminer
@@ -22,8 +27,10 @@ services:
     ports:
       - 8080:8080
   
-  # pm2:
-  #   build: .
-  #   image: crpyto-pm2
-  #   ports:
-  #     - 8000:8000
+  pm2:
+    depends_on:
+      - db
+    build: .
+    image: crypto-pm2
+    ports:
+      - 8000:8000
