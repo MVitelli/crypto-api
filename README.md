@@ -40,7 +40,7 @@
 
 - Se subió un .env.example porque no es buena práctica subir el .env (.gitignore), se debe reemplazar el nombre por .env para ejecutar la app.
 
-- Se agregó un colección de postman en formato .json con ejemplos de pedidos a los servicios.
+- Se agregó una colección de postman en formato .json con ejemplos de pedidos a los servicios.
       
       
 ## NPM Scripts
