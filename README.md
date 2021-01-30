@@ -55,7 +55,7 @@ En el package.json están los siguientes scripts:
 
 - cleanDB: hace un drop de todas las tablas
 
-Todos estos scripts tienen su version local que toma el DB_HOST=localhost para mysql. Por ejemplo:
+Todos estos scripts tienen su version local que toma el DB_HOST=localhost para mysql. Este script es solo para linux, para windows es necesario hacer el set de la variable de ambiente de otra manera. Por ejemplo:
 
 ```npm run start:local ```
 
