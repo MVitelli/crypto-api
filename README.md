@@ -40,7 +40,7 @@
 
 - Se subió un .env.example porque no es buena práctica subir el .env (.gitignore), se debe reemplazar el nombre por .env para ejecutar la app.
 
-- Se agregó un colección de postman en formato .json con ejemplos de pedidos a los servicios.
+- Se agregó una colección de postman en formato .json con ejemplos de pedidos a los servicios.
       
       
 ## NPM Scripts
@@ -49,7 +49,7 @@ En el package.json están los siguientes scripts:
 
 - start: levanta la app
 
-- test: corre los tests de la carpeta "./backend/tests"
+- test: corre los tests de la carpeta "./backend/tests". Para utilizarlo, hay que ejecutar ```npm install mocha -g``` en la consola correspondiente (host o container)
 
 - migrate: corre una migracion inicial con todos los archivos que se encuentran en "./backend/mysql"
 
