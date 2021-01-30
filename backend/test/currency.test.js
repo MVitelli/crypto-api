@@ -1,16 +1,14 @@
 const mocha = require('mocha')
 const chai = require('chai')
-const describe = mocha.describe
-const it = mocha.it
 const should = chai.should()
 const knex = require('../db')
 
 const currency = require('../models/currency')
 
-const insertQuery = 
-
 describe("Currency model", () => {
     beforeEach(async () => {
+        await knex.raw(`delete from rates`)
+        await knex.raw(`delete from currencies`)
         await knex.raw(`
         INSERT INTO currencies(id, description, symbol)
         VALUES

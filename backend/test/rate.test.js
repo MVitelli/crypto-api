@@ -1,7 +1,5 @@
 const mocha = require('mocha')
 const chai = require('chai')
-const describe = mocha.describe
-const it = mocha.it
 const should = chai.should()
 const knex = require('../db')
 
@@ -46,23 +44,26 @@ describe("Rate model", () => {
             })
     })
     it("should get last BTC rate", (done) => {
-        insertQuery().then(
-            rate.getBySymbol('BTC')
-                .then((data) => {
-                    data.id.should.be.equal(4)
-                    done()
-                })
-                .catch((err) => {
-                    done(err)
-                })
-        )
+        setTimeout(() => {
+            insertQuery().then(() => {
+                rate.getBySymbol('BTC')
+                    .then((data) => {
+                        data.id.should.be.equal(4)
+                        done()
+                    })
+                    .catch((err) => {
+                        done(err)
+                    })
+            }
+            )
+        }, 1500)
     })
     it("should get last rate of each currency", (done) => {
         setTimeout(() => {
             insertQuery().then(() => {
                 rate.getJoined()
                     .then(data => {
-                        
+
                         let btcRate = data.find(rate => rate.currency.symbol === 'BTC')
                         let ethRate = data.find(rate => rate.currency.symbol === 'ETH')
                         let adaRate = data.find(rate => rate.currency.symbol === 'ADA')
@@ -76,6 +77,6 @@ describe("Rate model", () => {
                         done(err)
                     })
             })
-        }, 500)
+        }, 1500)
     })
 })

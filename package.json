@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node ./backend/app.js",
     "start:local": "DB_HOST=localhost node ./backend/app.js",
-    "test": "mocha ./backend/test",
-    "test:local": "DB_HOST=localhost mocha ./backend/test",
+    "test": "mocha --timeout 5000 ./backend/test",
+    "test:local": "DB_HOST=localhost mocha --timeout 5000 ./backend/test",
     "migrate": "node ./backend/migrate.js",
     "migrate:local": "DB_HOST=localhost node ./backend/migrate.js",
     "cleanDB": "node ./backend/cleanMigration.js",
