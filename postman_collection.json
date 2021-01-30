@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "e4bf3788-6aec-4c34-aa96-2a8a8c5bd520",
+		"name": "Crypto rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crypto - Rates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/rates",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"rates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crypto - Currencies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/currencies",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"currencies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crypto - Rate:{symbol}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/rates/ADA",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"rates",
+						"ADA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crypto - Rate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_currency\": 3,\r\n    \"value\": 11934.231233\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/rates",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"rates"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
